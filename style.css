@@ -22,7 +22,9 @@ body.home-landing-body {
     flex-direction: column;
 }
 
-/* Header */
+/* ==========================================================
+   1. Header Navigation
+   ========================================================== */
 .landing-header {
     display: flex;
     justify-content: space-between;
@@ -52,36 +54,45 @@ body.home-landing-body {
 .landing-nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
-.landing-nav .nav-item {
+.landing-nav .nav-item,
+.landing-nav .nav-btn {
     text-decoration: none;
+    background: transparent;
+    border: none;
     color: var(--navy-primary);
     font-size: 0.95rem;
     font-weight: 500;
+    font-family: 'Prompt', sans-serif;
     padding: 8px 14px;
     border-radius: 8px;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.landing-nav .nav-item:hover {
+.landing-nav .nav-item:hover,
+.landing-nav .nav-btn:hover {
     background-color: var(--navy-light);
     color: var(--navy-hover);
 }
 
-/* Hero Section Layout */
+/* ==========================================================
+   2. Main Layout (Hero Section)
+   ========================================================== */
 .hero-section {
     flex: 1;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     padding: 10px 60px 40px;
-    gap: 48px;
+    gap: 40px;
 }
 
 .hero-content {
-    max-width: 600px;
+    width: 100%;
+    max-width: 580px;
 }
 
 .project-pill {
@@ -90,14 +101,14 @@ body.home-landing-body {
     color: var(--navy-primary);
     padding: 6px 16px;
     border-radius: 30px;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     border: 1px solid rgba(0, 46, 94, 0.08);
 }
 
 .hero-title {
-    font-size: 3.2rem;
+    font-size: 3rem;
     line-height: 1.15;
     font-weight: 700;
     color: var(--navy-primary);
@@ -109,14 +120,15 @@ body.home-landing-body {
 }
 
 .hero-desc {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     line-height: 1.65;
     color: var(--text-muted);
-    margin-bottom: 28px;
+    margin-bottom: 24px;
+    word-break: break-word;
 }
 
 .action-wrap {
-    margin-bottom: 36px;
+    margin-bottom: 30px;
 }
 
 .btn-portal-entry {
@@ -126,12 +138,13 @@ body.home-landing-body {
     background-color: var(--navy-primary);
     color: #ffffff;
     text-decoration: none;
-    padding: 13px 30px;
+    padding: 13px 28px;
     border-radius: 25px;
     font-size: 0.98rem;
     font-weight: 600;
     box-shadow: 0 4px 14px rgba(0, 46, 94, 0.2);
     transition: all 0.25s ease;
+    white-space: nowrap;
 }
 
 .btn-portal-entry:hover {
@@ -140,14 +153,16 @@ body.home-landing-body {
     box-shadow: 0 6px 18px rgba(0, 46, 94, 0.3);
 }
 
-/* Tech Stack */
+/* ==========================================================
+   3. Technology Stack Badges
+   ========================================================== */
 .tech-section {
-    padding-top: 20px;
+    padding-top: 18px;
     border-top: 1px solid var(--border-color);
 }
 
 .tech-label {
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.8px;
     color: #8391a2;
@@ -164,13 +179,17 @@ body.home-landing-body {
     background-color: #ffffff;
     color: var(--navy-primary);
     border: 1px solid var(--border-color);
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 8px;
     font-size: 0.82rem;
     font-weight: 500;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    white-space: nowrap;
 }
 
+/* ==========================================================
+   4. Hero Graphic & Diagram Card (แก้รูปเล็กกรอบใหญ่)
+   ========================================================== */
 .hero-graphic {
     display: flex;
     justify-content: center;
@@ -178,157 +197,44 @@ body.home-landing-body {
     width: 100%;
 }
 
-/* ขยายการ์ดให้ใหญ่ขึ้นมาก พร้อมลูกเล่นลอยนุ่มนวล */
 .diagram-surface {
     width: 100%;
-    max-width: 780px;            /* ขยายขนาดความกว้างขึ้นเต็มตา */
+    max-width: 680px;
     background-color: #ffffff;
     border: 1px solid var(--border-color);
-    border-radius: 28px;
-    padding: 12px;               /* ขอบชิด เพื่อให้รูปใหญ่ที่สุด */
-    box-shadow: 0 16px 45px rgba(0, 46, 94, 0.1);
+    border-radius: 24px;
+    padding: 8px; /* ขอบชิด เพื่อให้รูปภาพขยายได้เต็มที่โดยไม่เหลือก้นกรอบขาว */
+    box-shadow: 0 14px 35px rgba(0, 46, 94, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* สั่งให้เล่นแอนิเมชันลอยตลอดเวลา */
-    animation: floatingHero 4s ease-in-out infinite;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    animation: floatingHero 4.5s ease-in-out infinite;
+    transition: transform 0.3s ease;
 }
 
-/* เมื่อเอาเมาส์ไปชี้ การ์ดจะยกตัวขึ้นและเงาชัดขึ้น */
 .diagram-surface:hover {
-    animation-play-state: paused; /* หยุดขยับชั่วคราวเมื่อชี้ */
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 22px 55px rgba(0, 46, 94, 0.16);
+    animation-play-state: paused;
+    transform: translateY(-6px);
 }
 
-/* ปรับขนาดรูปให้ขยายใหญ่เต็มกล่อง */
 .diagram-surface img {
     width: 100%;
-    height: auto;
-    max-height: 540px;           /* เพิ่มความสูงของรูป */
-    object-fit: contain;
+    height: 100%;
+    max-height: 520px;
+    object-fit: contain; /* แสดงรูปเต็มตัวโดยไม่โดนบีบสัดส่วน */
     display: block;
-    border-radius: 20px;
+    border-radius: 18px;
 }
 
-/* Keyframes ควบคุมการลอยขึ้น-ลงอย่างนุ่มนวล */
 @keyframes floatingHero {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-12px); /* ลอยขึ้นเบาๆ 12px */
-    }
-    100% {
-        transform: translateY(0px);
-    }
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
 }
 
 /* ==========================================================
-   Responsive Design (Tablet & Mobile)
-   ========================================================== */
-@media (max-width: 992px) {
-    .landing-header {
-        padding: 20px 30px;
-    }
-
-    /* ขยายสัดส่วนพื้นที่หน้าจอให้ฝั่งขวาได้พื้นที่เต็มที่ */
-    .hero-section {
-        flex: 1;
-        display: grid;
-        grid-template-columns: 0.95fr 1.25fr; /* เพิ่มสัดส่วนฝั่งขวาให้กว้างขึ้น */
-        align-items: center;
-        padding: 10px 40px 40px;
-        gap: 30px;
-    }
-
-    .hero-content {
-        max-width: 100%;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-desc {
-        margin: 0 auto 24px;
-    }
-
-    .tech-badges {
-        justify-content: center;
-    }
-
-    .diagram-surface {
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 600px) {
-    .landing-header {
-        flex-direction: column;
-        gap: 16px;
-        padding: 16px 20px;
-    }
-
-    .landing-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .landing-nav .nav-item {
-        font-size: 0.85rem;
-        padding: 6px 10px;
-    }
-
-    .hero-section {
-        padding: 10px 20px 30px;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-desc {
-        font-size: 0.95rem;
-    }
-
-    .btn-portal-entry {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .diagram-surface {
-        padding: 16px;
-        border-radius: 14px;
-    }
-}
-
-
-
-/* Navigation Buttons */
-.landing-nav .nav-btn {
-    background: transparent;
-    border: none;
-    color: var(--navy-primary);
-    font-size: 0.95rem;
-    font-weight: 500;
-    font-family: 'Prompt', sans-serif;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.landing-nav .nav-btn:hover {
-    background-color: var(--navy-light);
-    color: var(--navy-hover);
-}
-
-/* ==========================================================
-   Modern Modal Overlay & Cards
+   5. Modals (About & Team)
    ========================================================== */
 .info-modal-overlay {
     position: fixed;
@@ -360,14 +266,8 @@ body.home-landing-body {
     max-width: 620px;
     max-height: 85vh;
     overflow-y: auto;
-    padding: 28px 32px;
+    padding: 24px 28px;
     box-shadow: 0 16px 40px rgba(0, 46, 94, 0.15);
-    transform: translateY(15px);
-    transition: all 0.25s ease;
-}
-
-.info-modal-overlay.show .info-modal-card {
-    transform: translateY(0);
 }
 
 .modal-header {
@@ -375,12 +275,12 @@ body.home-landing-body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 14px;
-    margin-bottom: 20px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
 }
 
 .modal-header h3 {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--navy-primary);
     margin: 0;
@@ -390,10 +290,8 @@ body.home-landing-body {
     background: transparent;
     border: none;
     font-size: 26px;
-    line-height: 1;
     color: #8898aa;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
 .btn-close-modal:hover {
@@ -402,91 +300,49 @@ body.home-landing-body {
 
 .modal-body {
     color: #334e68;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.65;
+    word-break: break-word;
 }
 
 .modal-body h4 {
     color: var(--navy-primary);
-    font-size: 1.05rem;
-    margin: 16px 0 6px 0;
+    font-size: 1rem;
+    margin: 14px 0 6px 0;
 }
 
 .modal-feature-list {
     margin-left: 20px;
-    margin-top: 8px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-/* Team Grid */
-.team-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 22px;
+.modal-feature-list li {
+    word-break: break-word;
+    line-height: 1.55;
 }
 
-.team-item {
-    background-color: var(--bg-cream);
-    border: 1px solid var(--border-color);
-    padding: 10px 14px;
-    border-radius: 10px;
-    font-weight: 500;
-    color: var(--navy-primary);
-    font-size: 0.9rem;
-}
-
-.advisor-box {
-    background-color: var(--navy-light);
-    border-left: 4px solid var(--navy-primary);
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 0.88rem;
-}
-
-.advisor-box .sub-advisor {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-top: 4px;
-}
-
-@media (max-width: 600px) {
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .info-modal-card {
-        padding: 20px;
-    }
-}
-
-
-
-/* ==========================================================
-   Grouped Team Members Styles
-   ========================================================== */
 .team-grouped-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 .team-group-block {
     background: #ffffff;
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 12px 16px;
+    padding: 10px 14px;
 }
 
 .group-title {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: var(--navy-primary);
     margin-bottom: 8px;
-    padding-bottom: 6px;
+    padding-bottom: 4px;
     border-bottom: 1px dashed var(--border-color);
 }
 
@@ -498,50 +354,115 @@ body.home-landing-body {
 
 .member-card {
     background-color: var(--bg-cream);
-    border: 1px solid rgba(0, 46, 94, 0.06);
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 6px 10px;
     display: flex;
     flex-direction: column;
-    gap: 2px;
 }
 
 .member-name {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--navy-primary);
 }
 
 .member-role {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     color: var(--text-muted);
 }
 
-/* ปรับแต่งการแสดงผลบนจอขนาดเล็ก */
-@media (max-width: 600px) {
+.advisor-box {
+    background-color: var(--navy-light);
+    border-left: 4px solid var(--navy-primary);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 0.84rem;
+}
+
+.advisor-box .sub-advisor {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
+
+/* ==========================================================
+   6. Responsive Layout (มือถือ และ แท็บเล็ต)
+   ========================================================== */
+@media (max-width: 900px) {
+    .landing-header {
+        padding: 18px 24px;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .landing-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .landing-nav .nav-item,
+    .landing-nav .nav-btn {
+        font-size: 0.88rem;
+        padding: 6px 10px;
+    }
+
+    /* สลับเป็น 1 คอลัมน์เดี่ยวเต็มความกว้าง */
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 20px 40px;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        order: 1; /* ข้อความอยู่บน */
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        word-break: break-word;
+    }
+
+    .project-pill {
+        margin: 0 auto 12px;
+    }
+
+    .action-wrap {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-portal-entry {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .tech-badges {
+        justify-content: center;
+    }
+
+    /* การ์ดรูปภาพบนจอมือถือ */
+    .hero-graphic {
+        order: 2; /* รูปภาพอยู่ถัดลงมา */
+        width: 100%;
+    }
+
+    .diagram-surface {
+        max-width: 440px;
+        padding: 6px;
+        border-radius: 16px;
+        animation: none; /* ปิดแอนิเมชันลอยบนมือถือเพื่อความลื่นไหล */
+    }
+
+    .diagram-surface img {
+        max-height: 280px;
+    }
+
     .group-cards {
         grid-template-columns: 1fr;
     }
-}
-
-.modal-body {
-    color: #334e68;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    word-break: break-word;
-    text-align: left;
-}
-
-.modal-feature-list li {
-    word-break: break-word;
-    line-height: 1.6;
-}
-
-
-.diagram-surface img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    display: block;
 }
