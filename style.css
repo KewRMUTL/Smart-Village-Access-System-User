@@ -1,0 +1,506 @@
+:root {
+    --bg-cream: #fbf8ee;
+    --navy-primary: #002e5e;
+    --navy-hover: #001f40;
+    --navy-light: #e8eef5;
+    --text-muted: #536479;
+    --border-color: #e5e0d3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body.home-landing-body {
+    font-family: 'Prompt', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--navy-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    background: transparent;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.minimal-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.brand-text {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--navy-primary);
+}
+
+.landing-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.landing-nav .nav-item {
+    text-decoration: none;
+    color: var(--navy-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.landing-nav .nav-item:hover {
+    background-color: var(--navy-light);
+    color: var(--navy-hover);
+}
+
+/* Hero Section Layout */
+.hero-section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    padding: 10px 60px 40px;
+    gap: 48px;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.project-pill {
+    display: inline-block;
+    background-color: var(--navy-light);
+    color: var(--navy-primary);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    border: 1px solid rgba(0, 46, 94, 0.08);
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    line-height: 1.15;
+    font-weight: 700;
+    color: var(--navy-primary);
+    margin-bottom: 16px;
+}
+
+.highlight-text {
+    color: #175496;
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+}
+
+.action-wrap {
+    margin-bottom: 36px;
+}
+
+.btn-portal-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--navy-primary);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 25px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0, 46, 94, 0.2);
+    transition: all 0.25s ease;
+}
+
+.btn-portal-entry:hover {
+    background-color: var(--navy-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 46, 94, 0.3);
+}
+
+/* Tech Stack */
+.tech-section {
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.tech-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #8391a2;
+    margin-bottom: 12px;
+}
+
+.tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-chip {
+    background-color: #ffffff;
+    color: var(--navy-primary);
+    border: 1px solid var(--border-color);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Graphic Container (Right) */
+.hero-graphic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diagram-surface {
+    width: 100%;
+    max-width: 480px;
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 46, 94, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diagram-surface img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* ==========================================================
+   Responsive Design (Tablet & Mobile)
+   ========================================================== */
+@media (max-width: 992px) {
+    .landing-header {
+        padding: 20px 30px;
+    }
+
+    .hero-section {
+        grid-template-columns: 1fr;
+        padding: 20px 30px 40px;
+        gap: 36px;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-desc {
+        margin: 0 auto 24px;
+    }
+
+    .tech-badges {
+        justify-content: center;
+    }
+
+    .diagram-surface {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .landing-header {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px 20px;
+    }
+
+    .landing-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .landing-nav .nav-item {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    .hero-section {
+        padding: 10px 20px 30px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-desc {
+        font-size: 0.95rem;
+    }
+
+    .btn-portal-entry {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .diagram-surface {
+        padding: 16px;
+        border-radius: 14px;
+    }
+}
+
+
+
+/* Navigation Buttons */
+.landing-nav .nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--navy-primary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'Prompt', sans-serif;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.landing-nav .nav-btn:hover {
+    background-color: var(--navy-light);
+    color: var(--navy-hover);
+}
+
+/* ==========================================================
+   Modern Modal Overlay & Cards
+   ========================================================== */
+.info-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 46, 94, 0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+}
+
+.info-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-modal-card {
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 620px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px 32px;
+    box-shadow: 0 16px 40px rgba(0, 46, 94, 0.15);
+    transform: translateY(15px);
+    transition: all 0.25s ease;
+}
+
+.info-modal-overlay.show .info-modal-card {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--navy-primary);
+    margin: 0;
+}
+
+.btn-close-modal {
+    background: transparent;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    color: #8898aa;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-close-modal:hover {
+    color: #dc3545;
+}
+
+.modal-body {
+    color: #334e68;
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+.modal-body h4 {
+    color: var(--navy-primary);
+    font-size: 1.05rem;
+    margin: 16px 0 6px 0;
+}
+
+.modal-feature-list {
+    margin-left: 20px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Team Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.team-item {
+    background-color: var(--bg-cream);
+    border: 1px solid var(--border-color);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: var(--navy-primary);
+    font-size: 0.9rem;
+}
+
+.advisor-box {
+    background-color: var(--navy-light);
+    border-left: 4px solid var(--navy-primary);
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+.advisor-box .sub-advisor {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-modal-card {
+        padding: 20px;
+    }
+}
+
+
+
+/* ==========================================================
+   Grouped Team Members Styles
+   ========================================================== */
+.team-grouped-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.team-group-block {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.group-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy-primary);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.group-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.member-card {
+    background-color: var(--bg-cream);
+    border: 1px solid rgba(0, 46, 94, 0.06);
+    border-radius: 8px;
+    padding: 8px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.member-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--navy-primary);
+}
+
+.member-role {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+/* ปรับแต่งการแสดงผลบนจอขนาดเล็ก */
+@media (max-width: 600px) {
+    .group-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+.modal-body {
+    color: #334e68;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    word-break: break-word;
+    text-align: left;
+}
+
+.modal-feature-list li {
+    word-break: break-word;
+    line-height: 1.6;
+}
