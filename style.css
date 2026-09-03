@@ -455,7 +455,7 @@ body.home-landing-body {
         max-width: 440px;
         padding: 6px;
         border-radius: 16px;
-        animation: floatingHeroMobile 4s ease-in-out infinite; /* สั่งให้ขยับบนมือถือ */
+        animation: none; /* ปิดแอนิเมชันลอยบนมือถือเพื่อความลื่นไหล */
     }
 
     .diagram-surface img {
