@@ -171,30 +171,59 @@ body.home-landing-body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
-/* Graphic Container (Right) */
 .hero-graphic {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
+/* ขยายการ์ดให้ใหญ่ขึ้นมาก พร้อมลูกเล่นลอยนุ่มนวล */
 .diagram-surface {
     width: 100%;
-    max-width: 480px;
+    max-width: 780px;            /* ขยายขนาดความกว้างขึ้นเต็มตา */
     background-color: #ffffff;
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 10px 25px rgba(0, 46, 94, 0.05);
+    border-radius: 28px;
+    padding: 12px;               /* ขอบชิด เพื่อให้รูปใหญ่ที่สุด */
+    box-shadow: 0 16px 45px rgba(0, 46, 94, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    /* สั่งให้เล่นแอนิเมชันลอยตลอดเวลา */
+    animation: floatingHero 4s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* เมื่อเอาเมาส์ไปชี้ การ์ดจะยกตัวขึ้นและเงาชัดขึ้น */
+.diagram-surface:hover {
+    animation-play-state: paused; /* หยุดขยับชั่วคราวเมื่อชี้ */
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 22px 55px rgba(0, 46, 94, 0.16);
+}
+
+/* ปรับขนาดรูปให้ขยายใหญ่เต็มกล่อง */
 .diagram-surface img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    max-height: 540px;           /* เพิ่มความสูงของรูป */
     object-fit: contain;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Keyframes ควบคุมการลอยขึ้น-ลงอย่างนุ่มนวล */
+@keyframes floatingHero {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px); /* ลอยขึ้นเบาๆ 12px */
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 /* ==========================================================
@@ -205,11 +234,14 @@ body.home-landing-body {
         padding: 20px 30px;
     }
 
+    /* ขยายสัดส่วนพื้นที่หน้าจอให้ฝั่งขวาได้พื้นที่เต็มที่ */
     .hero-section {
-        grid-template-columns: 1fr;
-        padding: 20px 30px 40px;
-        gap: 36px;
-        text-align: center;
+        flex: 1;
+        display: grid;
+        grid-template-columns: 0.95fr 1.25fr; /* เพิ่มสัดส่วนฝั่งขวาให้กว้างขึ้น */
+        align-items: center;
+        padding: 10px 40px 40px;
+        gap: 30px;
     }
 
     .hero-content {
@@ -503,4 +535,13 @@ body.home-landing-body {
 .modal-feature-list li {
     word-break: break-word;
     line-height: 1.6;
+}
+
+
+.diagram-surface img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
