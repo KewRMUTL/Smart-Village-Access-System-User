@@ -82,12 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================
     // ส่วนที่ 4: ฟังก์ชันจัดการ Helper และการแปลงข้อความ
     // ==========================================================
-    // ฟังก์ชันสุ่มรหัสตัวเลขล้วน 13 หลัก (จำลองรูปแบบบาร์โค้ดบัตร ปชช.)
+    // ฟังก์ชันสุ่มรหัส 13 ตัวอักษร (ตัวเลข 0-9 และตัวพิมพ์เล็ก a-z)
+    // <!-- แแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแก้จุดที่ 8 บรรทัด 316 (ตัวเลข 0-9 และตัวพิมพ์เล็ก a-z) -->
     function generateRandomVisitorCode(length = 13) {
-        const digits = '0123456789';
-        let res = digits.charAt(Math.floor(Math.random() * 9) + 1); // หลักแรกไม่เป็น 0
-        for (let i = 1; i < length; i++) {
-            res += digits.charAt(Math.floor(Math.random() * digits.length));
+        const characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        let res = '';
+        for (let i = 0; i < length; i++) {
+            res += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         return res;
     }
@@ -588,3 +589,12 @@ function getMatchedVehicleLogs(apiResponseData, targetPlate) {
             cameraOutText: log.camera_out ? `(${log.camera_out})` : ''
         }));
 }
+// ฟังก์ชันสุ่มรหัสตัวเลขล้วน 13 หลัก (จำลองรูปแบบบาร์โค้ดบัตร ปชช.)
+    function generateRandomVisitorCode(length = 13) {
+        const digits = '0123456789';
+        let res = digits.charAt(Math.floor(Math.random() * 9) + 1); // หลักแรกไม่เป็น 0
+        for (let i = 1; i < length; i++) {
+            res += digits.charAt(Math.floor(Math.random() * digits.length));
+        }
+        return res;
+    }
