@@ -321,9 +321,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const progressBar = createExpiryProgressBar(currentUser.memberStartDate, currentUser.memberExpireDate);
 
-        // ดึง Telegram ID และ Link (รองรับชื่อฟิลด์ต่างๆ จากเพื่อน)
-        const telegramId = currentUser.telegram_id || currentUser.telegramId || currentUser.chat_id || 'ยังไม่เชื่อมต่อ';
-        const telegramLink = currentUser.telegram_link || currentUser.telegramLink || 'https://t.me/smartvillage_notify_bot';
+        // แแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแก้ ดึง Telegram
+        const telegramBotLink = "https://t.me/SmartVillageVCCESBot";
 
         container.innerHTML = `
             <div class="homeNumber">
@@ -343,12 +342,17 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- กล่องเชื่อมต่อ Telegram -->
             <div class="telegram-card-box">
                 <div class="telegram-header-flex">
-                    <div class="telegram-title">✈️ ระบบแจ้งเตือน Telegram</div>
-                    <span class="telegram-id-badge">ID: ${telegramId}</span>
+                    <div class="telegram-title">ผูกการแจ้งเตือน Telegram</div>
+                    <span class="telegram-id-badge" style="font-size: 14px; background: #ffeaa7; color: #d63031;">
+                        รหัสสมาชิก: <b>${currentUser.id}</b>
+                    </span>
                 </div>
-                <p class="telegram-subtext">รับการแจ้งเตือนทันทีเมื่อรถผ่านเข้า-ออก หรือมีผู้ติดต่อมาพบ</p>
-                <a href="${telegramLink}" target="_blank" rel="noopener noreferrer" class="btn-telegram-link">
-                    📲 กดเข้าร่วมกลุ่ม / ผูกบอทแจ้งเตือน
+                <p class="telegram-subtext" style="margin-top: 8px;">
+                    1. กดปุ่มด้านล่างเพื่อเปิดบอท Telegram<br>
+                    2. พิมพ์รหัสสมาชิก <b>"${currentUser.id}"</b> ส่งให้บอทเพื่อเริ่มรับการแจ้งเตือน
+                </p>
+                <a href="${telegramBotLink}" target="_blank" rel="noopener noreferrer" class="btn-telegram-link" style="margin-top: 10px;">
+                    เปิดบอทแจ้งเตือน (@SmartVillageVCCESBot)
                 </a>
             </div>
             
