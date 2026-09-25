@@ -455,20 +455,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         pVdetail.innerHTML = `
         <button type="button" class="back-btn" id="btnBackToDetail">← กลับ</button>
-        <div class="vehicle-card">
-            <div class="v-title">ประวัติการเข้า-ออก (ดึงข้อมูลจากระบบกล้อง LPR)</div>
-            <div class="v-date">วันที่ลงทะเบียนรถ : ${formatDateDisplay(vehicle ? vehicle.registerDate : '')} </div>
-            <div class="v-grid">
-                <div class="v-item">ป้ายทะเบียน : ${vehicle ? vehicle.plate : targetPlate}</div>
-                <div class="v-item">ประเภท : ${vehicle ? vehicle.type : 'รถยนต์'}</div>
-                <div class="v-item">เวลาเข้า</div>
-                <div class="v-item">เวลาออก</div>
-                <div class="v-item v-time">${timeIn}</div>
-                <div class="v-item v-time">${timeOut}</div>
-            </div>
-        </div>
 
-        <!-- 📊 ส่วนแสดงผลสถิติและกราฟ (วัน / เดือน / ปี) -->
+        <!-- 📊 ส่วนกราฟและสถิติ (ย้ายขึ้นมาไว้ด้านบน) -->
         <div class="summary-header">
             <div>
                 <h2>สรุปสถิติการเข้า-ออกของรถ</h2>
@@ -506,11 +494,25 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="chart-container">
                 <canvas id="chartOut"></canvas>
             </div>
+        </div>
+
+        <!-- 📋 ตารางประวัติรายการเข้า-ออกสีน้ำเงิน (ย้ายลงมาอยู่ด้านล่างกราฟ) -->
+        <div class="vehicle-card" style="margin-top: 25px; margin-bottom: 40px;">
+            <div class="v-title">ประวัติการเข้า-ออก (ดึงข้อมูลจากระบบกล้อง LPR)</div>
+            <div class="v-date">วันที่ลงทะเบียนรถ : ${formatDateDisplay(vehicle ? vehicle.registerDate : '')} </div>
+            <div class="v-grid">
+                <div class="v-item">ป้ายทะเบียน : ${vehicle ? vehicle.plate : targetPlate}</div>
+                <div class="v-item">ประเภท : ${vehicle ? vehicle.type : 'รถยนต์'}</div>
+                <div class="v-item">เวลาเข้า</div>
+                <div class="v-item">เวลาออก</div>
+                <div class="v-item v-time">${timeIn}</div>
+                <div class="v-item v-time">${timeOut}</div>
+            </div>
         </div>`;
 
         document.getElementById('btnBackToDetail')?.addEventListener('click', () => renderPage('user'));
 
-        // เรียกวาดกราฟโดยส่ง Logs ของรถคันนี้เข้าไปประมวลผล
+        // เรนเดอร์กราฟทันที
         renderVehicleChart(matchedLogs);
     }
 
