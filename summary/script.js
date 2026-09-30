@@ -394,36 +394,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 deleteVehicle(e.target.dataset.vId, e.target.dataset.vPlate);
             });
         });
-
+//แแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแก้ 30/09/69
         // ปุ่มสร้างบาร์โค้ด
         const btnGenerateVisitorQR = document.getElementById('btnGenerateVisitorQR');
         if (btnGenerateVisitorQR) {
             btnGenerateVisitorQR.addEventListener('click', async () => {
-                if (!currentActiveBarcode) {
-                    currentActiveBarcode = generateRandomVisitorCode(13);
-                }
-
+                // 1. เช็กสถานะบาร์โค้ดล่าสุดจาก Server ก่อนทุกครั้ง
+                let isValidActive = false;
                 try {
-                    const res = await fetch(`${VISITOR_BARCODE_API}/create`, {
-                        method: 'POST',
-                        headers: { 
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        },
-                        body: JSON.stringify({
-                            user_id: currentUser.id,
-                            barcode: currentActiveBarcode
-                        })
+                    const checkRes = await fetch(`${VISITOR_BARCODE_API}/latest/${currentUser.id}`, {
+                        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                     });
-                    const result = await res.json();
-                    if (result.success && result.data) {
-                        currentActiveBarcode = result.data.barcode;
-                        localStorage.setItem('savedVisitorBarcode', currentActiveBarcode);
+                    const checkData = await checkRes.json();
+                    
+                    // บาร์โค้ดใช้ได้ ต้องมีสถานะเป็น ACTIVE หรือ 1 เท่านั้น
+                    if (checkData.success && checkData.exists && checkData.data) {
+                        const status = checkData.data.state || checkData.data.status;
+                        if (status === 'ACTIVE' || status === 1 || status === true) {
+                            currentActiveBarcode = checkData.data.barcode;
+                            localStorage.setItem('savedVisitorBarcode', currentActiveBarcode);
+                            isValidActive = true;
+                        }
                     }
                 } catch (err) {
-                    console.error("API Create Barcode Error:", err);
+                    console.error("Check latest barcode error:", err);
                 }
 
+                // 2. ถ้าไม่มี หรือบาร์โค้ดเดิมถูกสแกนใช้ไปแล้ว (NON-ACTIVE) ให้สุ่มเจนโค้ดใหม่แล้วยิงสร้างทันที
+                if (!isValidActive) {
+                    localStorage.removeItem('savedVisitorBarcode');
+                    currentActiveBarcode = generateRandomVisitorCode(13);
+
+                    try {
+                        const res = await fetch(`${VISITOR_BARCODE_API}/create`, {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                            },
+                            body: JSON.stringify({
+                                user_id: currentUser.id,
+                                barcode: currentActiveBarcode
+                            })
+                        });
+                        const result = await res.json();
+                        if (result.success && result.data) {
+                            currentActiveBarcode = result.data.barcode;
+                            localStorage.setItem('savedVisitorBarcode', currentActiveBarcode);
+                        }
+                    } catch (err) {
+                        console.error("API Create Barcode Error:", err);
+                    }
+                }
+
+                // 3. นำบาร์โค้ดที่ ACTIVE ชัวร์ๆ ไปแสดงผล
                 const barcodeUrl = `https://bwipjs-api.metafloor.com/?bcid=code128&text=${currentActiveBarcode}&scale=3&height=14&includetext`;
 
                 if (visitorCodeDisplay) visitorCodeDisplay.textContent = currentActiveBarcode;
@@ -775,14 +799,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         await syncDatabase();
-
+//แแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแแก้ 30/09/69
         if (currentUser) {
             try {
                 const barcodeRes = await fetch(`${VISITOR_BARCODE_API}/latest/${currentUser.id}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 const barcodeData = await barcodeRes.json();
-                if (barcodeData.success && barcodeData.exists && barcodeData.data) {
+                
+                // ตรวจสถานะว่าต้องเป็น ACTIVE ด้วย ถึงจะเซฟเก็บไว้ใช้งานต่อ
+                const barcodeStatus = barcodeData?.data?.state || barcodeData?.data?.status;
+                const isActive = barcodeStatus === 'ACTIVE' || barcodeStatus === 1 || barcodeStatus === true;
+
+                if (barcodeData.success && barcodeData.exists && barcodeData.data && isActive) {
                     currentActiveBarcode = barcodeData.data.barcode;
                     localStorage.setItem('savedVisitorBarcode', currentActiveBarcode);
                 } else {
